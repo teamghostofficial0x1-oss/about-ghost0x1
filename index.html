@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghost0x1 | Elite Red Teamer & Bug Hunter</title>
+    <title>Md. Rubel Ahmed | Cyber Security Expert</title>
+    
+    <!-- Google Fonts: JetBrains Mono (Best for Hacker Theme) -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Animate.css CDN for smooth entry animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <style>
         :root {
             --matrix-green: #00FF41;
@@ -14,296 +24,479 @@
             --waf-blue: #00e5ff;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; cursor: crosshair; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            cursor: crosshair; 
+        }
+
         body {
             background-color: var(--dark-bg);
             color: var(--matrix-green);
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'JetBrains Mono', monospace;
             overflow-x: hidden;
             line-height: 1.4;
         }
 
-        #matrix-canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.15; }
+        /* Matrix Canvas Background */
+        #matrix-canvas { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            z-index: -1; 
+            opacity: 0.2; 
+        }
 
         .container {
             width: 95%;
             max-width: 1200px;
             margin: 20px auto;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.85);
             border: 1px solid var(--matrix-green);
-            box-shadow: 0 0 50px rgba(0, 255, 65, 0.15);
-            padding: 20px;
+            box-shadow: 0 0 50px rgba(0, 255, 65, 0.1);
+            padding: 30px;
+            backdrop-filter: blur(5px);
         }
 
-        /* Glitch Title */
-        .glitch {
-            font-size: 3rem;
+        /* Profile Section */
+        .profile-section {
             text-align: center;
-            letter-spacing: 15px;
-            text-shadow: 2px 2px var(--warning-red);
-            animation: glitch-anim 2s infinite;
+            margin-bottom: 40px;
         }
+
+        .profile-img-box {
+            width: 170px;
+            height: 170px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 3px solid var(--matrix-green);
+            box-shadow: 0 0 30px var(--matrix-green);
+            overflow: hidden;
+            background: #000;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-img-box:hover {
+            transform: rotate(360deg);
+        }
+
+        .profile-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .glitch {
+            font-size: 2.8rem;
+            text-align: center;
+            letter-spacing: 3px;
+            text-shadow: 3px 3px var(--warning-red);
+            animation: glitch-anim 2s infinite;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+        
         @keyframes glitch-anim {
             0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
             100% { transform: translate(0); }
         }
 
-        .section { margin: 40px 0; border: 1px solid #222; padding: 20px; position: relative; }
-        .section-header {
-            position: absolute; top: -15px; left: 20px;
-            background: var(--matrix-green); color: #000;
-            padding: 2px 15px; font-weight: bold; font-size: 0.9rem;
+        .role-tag {
+            color: var(--accent-white);
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+            background: rgba(0, 255, 65, 0.1);
+            padding: 5px 15px;
+            border-radius: 4px;
         }
 
-        /* Skill Cards */
+        /* Sections */
+        .section { 
+            margin: 50px 0; 
+            border: 1px solid #222; 
+            padding: 25px; 
+            position: relative; 
+            background: rgba(10, 10, 10, 0.5);
+        }
+
+        .section-header {
+            position: absolute; 
+            top: -15px; 
+            left: 20px;
+            background: var(--matrix-green); 
+            color: #000;
+            padding: 2px 20px; 
+            font-weight: bold; 
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* Skill Grid */
         .skill-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
-        .skill-card { border: 1px solid #333; padding: 15px; background: #0a0a0a; }
-        .skill-card h3 { color: #fff; margin-bottom: 10px; border-bottom: 1px solid var(--matrix-green); display: inline-block; }
-        .skill-card p { font-size: 0.85rem; color: #aaa; text-align: justify; }
 
-        /* CTF LAB UI */
-        .lab-nav { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .skill-card { 
+            border: 1px solid #333; 
+            padding: 20px; 
+            background: #0a0a0a; 
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        .skill-card:hover { 
+            border-color: var(--matrix-green); 
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .skill-card i { 
+            font-size: 1.5rem; 
+            margin-bottom: 15px; 
+            color: var(--matrix-green);
+        }
+
+        .skill-card h3 { 
+            color: #fff; 
+            margin-bottom: 10px; 
+            font-size: 1.1rem;
+        }
+
+        .skill-card p { 
+            font-size: 0.85rem; 
+            color: #888; 
+            line-height: 1.6;
+        }
+
+        /* CTF Lab Styling */
+        .lab-nav { display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
         .lab-btn {
-            background: transparent; border: 1px solid var(--matrix-green);
-            color: var(--matrix-green); padding: 10px 20px; font-family: inherit;
+            background: transparent; 
+            border: 1px solid var(--matrix-green);
+            color: var(--matrix-green); 
+            padding: 12px 25px; 
+            font-family: inherit;
+            font-weight: bold;
             transition: 0.3s;
         }
-        .lab-btn:hover, .lab-btn.active { background: var(--matrix-green); color: #000; box-shadow: 0 0 15px var(--matrix-green); }
+        .lab-btn:hover, .lab-btn.active { 
+            background: var(--matrix-green); 
+            color: #000; 
+            box-shadow: 0 0 20px var(--matrix-green);
+        }
 
-        .lab-content { display: none; background: #000; border: 1px solid #444; padding: 20px; }
-        .waf-alert { color: var(--waf-blue); font-size: 0.8rem; border-left: 3px solid var(--waf-blue); padding-left: 10px; margin-bottom: 15px; }
+        .lab-content { 
+            display: none; 
+            background: #000; 
+            border: 1px solid #333; 
+            padding: 25px; 
+            border-radius: 5px;
+        }
+
+        .waf-alert { 
+            color: var(--waf-blue); 
+            font-size: 0.8rem; 
+            border-left: 3px solid var(--waf-blue); 
+            padding-left: 15px; 
+            margin-bottom: 20px;
+            background: rgba(0, 229, 255, 0.05);
+            padding: 10px;
+        }
+
         .input-group { display: flex; gap: 10px; margin-top: 15px; }
-        input { flex: 1; background: #111; border: 1px solid #444; color: #fff; padding: 10px; outline: none; }
-        input:focus { border-color: var(--matrix-green); }
-        .fire-btn { background: var(--warning-red); border: none; color: white; padding: 10px 25px; font-weight: bold; }
+        input { 
+            flex: 1; 
+            background: #111; 
+            border: 1px solid #444; 
+            color: #fff; 
+            padding: 12px; 
+            outline: none;
+            font-family: inherit;
+        }
+
+        .fire-btn { 
+            background: var(--warning-red); 
+            border: none; 
+            color: white; 
+            padding: 10px 30px; 
+            font-weight: bold; 
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .fire-btn:active { transform: scale(0.95); }
 
         .terminal-output {
-            margin-top: 20px; background: #050505; border: 1px solid #222;
-            padding: 15px; min-height: 100px; font-size: 0.85rem; white-space: pre-wrap;
+            margin-top: 20px; 
+            background: #050505; 
+            border: 1px solid #222;
+            padding: 15px; 
+            min-height: 100px; 
+            font-size: 0.9rem; 
+            color: #00ff00;
         }
 
         .flag-box {
-            display: none; background: rgba(0, 255, 65, 0.1);
-            border: 1px dashed var(--matrix-green); padding: 10px; margin-top: 10px; text-align: center;
+            display: none; 
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px dashed var(--matrix-green); 
+            padding: 15px; 
+            margin-top: 15px; 
+            text-align: center;
+            font-weight: bold;
+            color: #fff;
         }
 
-        footer { text-align: center; margin-top: 50px; font-size: 0.7rem; color: #444; }
+        /* Footer */
+        footer { 
+            text-align: center; 
+            margin-top: 60px; 
+            font-size: 0.8rem; 
+            color: #555; 
+            border-top: 1px solid #222;
+            padding-top: 20px;
+        }
+
+        .social-links {
+            margin-bottom: 15px;
+        }
+
+        .social-links a {
+            color: var(--matrix-green);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--matrix-green);
+        }
     </style>
 </head>
 <body>
 
 <canvas id="matrix-canvas"></canvas>
 
-<div class="container">
-    <header>
-        <div class="glitch">GHOST0X1</div>
-        <p style="text-align: center; color: var(--accent-white);">[ RED TEAMER | BUG HUNTER | SECURITY RESEARCHER ]</p>
+<div class="container animate__animated animate__fadeIn">
+    <header class="profile-section">
+        <div class="profile-img-box">
+            <img src="https://scontent.fdac127-1.fna.fbcdn.net/v/t39.30808-1/622253658_122102566911231757_5840124523405627807_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=111&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeFrY_7TsYwlylzMfDLSwdVTpuPRrvh4VkOm49Gu-HhWQwAcvfIZAq9GH3mX08dvLtOPIOtBcYQkthYN8_GqFfOD&_nc_ohc=Wf1CJOtKOtAQ7kNvwG9bzSI&_nc_oc=Adq9m6JzXYpzqFOu4tBbrjSEA7im2CUe_jfHa6hd87KjPa34DuUQbtwHv0kFOfZT40s&_nc_zt=24&_nc_ht=scontent.fdac127-1.fna&_nc_gid=Y0hDqoJkAXedbMhVhpmejA&_nc_ss=7b2a8&oh=00_Af5xF2geuCpZTL155jpefk_CZ6JgVVwRJJl0vnPi8K4nlQ&oe=6A0BD2BF" alt="Md. Rubel Ahmed">
+        </div>
+        <div class="glitch">Md. Rubel Ahmed</div>
+        <div class="role-tag">[ SECURITY RESEARCHER | RED TEAMER ]</div>
     </header>
 
-    <!-- Detailed Skills Section -->
-    <div class="section">
-        <span class="section-header">SKILL_DATABASE</span>
+    <div class="section animate__animated animate__fadeInUp">
+        <span class="section-header"><i class="fa-solid fa-database"></i> SKILL_DATABASE</span>
         <div class="skill-container">
             <div class="skill-card">
-                <h3>Red Team Operations</h3>
-                <p>Advanced adversary simulation, persistence maintenance, and lateral movement within enterprise networks. Specializing in stealth execution and EDR evasion.</p>
+                <i class="fa-solid fa-user-secret"></i>
+                <h3>Red Teaming</h3>
+                <p>Advanced adversary simulation, stealth lateral movement, and persistent threat modelling.</p>
             </div>
             <div class="skill-card">
-                <h3>Bug Hunter & Pentester</h3>
-                <p>Expert in OWASP Top 10, hunting critical vulnerabilities in web architectures. Verified experience in reporting RCE, SQLi, and IDOR flaws.</p>
+                <i class="fa-solid fa-bug"></i>
+                <h3>Bug Hunting</h3>
+                <p>Specializing in OWASP Top 10, exploring deep-level vulnerabilities in web architectures.</p>
             </div>
             <div class="skill-card">
-                <h3>OSINT Investigation</h3>
-                <p>Deep web intelligence gathering, footprinting, and digital forensics. Skilled in tracking targets through open-source data and metadata analysis.</p>
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <h3>OSINT</h3>
+                <p>Intelligence gathering from open sources, digital footprinting, and forensic analysis.</p>
             </div>
             <div class="skill-card">
-                <h3>Network Security (PNPT/CEH)</h3>
-                <p>Practical Network Penetration Testing methodology. Specialized in AD exploitation, pivoting, and securing wireless/wired infrastructures.</p>
+                <i class="fa-solid fa-network-wired"></i>
+                <h3>Pentesting</h3>
+                <p>Full-scale network penetration testing including AD environments and cloud security.</p>
             </div>
             <div class="skill-card">
-                <h3>WP Malware Forensics</h3>
-                <p>Deep-level WordPress security. Cleaning backdoors, analyzing obfuscated PHP malware, and hardening CMS environments.</p>
+                <i class="fa-brands fa-wordpress"></i>
+                <h3>WP Forensics</h3>
+                <p>Reverse engineering malware, cleaning backdoors, and advanced hardening of CMS platforms.</p>
             </div>
             <div class="skill-card">
-                <h3>Python Tools Development</h3>
-                <p>Building custom CLI tools for automation, exploit delivery, and custom scanners. Automating the boring stuff in pentesting.</p>
-            </div>
-            <div class="skill-card">
-                <h3>Data Entry & Management</h3>
-                <p>High-speed accurate data processing and mining. Combining security logic with organized data structures for massive recon projects.</p>
+                <i class="fa-brands fa-python"></i>
+                <h3>Exploit Dev</h3>
+                <p>Custom tool development using Python for automation and exploit weaponization.</p>
             </div>
         </div>
     </div>
 
-    <!-- Advanced CTF Lab Section -->
-    <div class="section">
-        <span class="section-header">SECURE_CTF_LABS</span>
+    <div class="section animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+        <span class="section-header"><i class="fa-solid fa-terminal"></i> CTF_LAB_ENVIRONMENT</span>
         <div class="lab-nav">
-            <button class="lab-btn" onclick="openLab('xss')">01_XSS_BYPASS</button>
+            <button class="lab-btn active" onclick="openLab('xss')">01_XSS_BYPASS</button>
             <button class="lab-btn" onclick="openLab('sqli')">02_SQLi_FILTER</button>
             <button class="lab-btn" onclick="openLab('lfi')">03_LFI_TRAVERSAL</button>
             <button class="lab-btn" onclick="openLab('cmd')">04_REMOTE_EXEC</button>
         </div>
 
-        <!-- XSS Challenge -->
-        <div id="lab-xss" class="lab-content">
-            <div class="waf-alert">WAF STATUS: Level 3 (Blocks: &lt;script&gt;, alert, confirm, prompt)</div>
-            <p>Task: Trigger an alert box using a non-standard event handler.</p>
+        <div id="lab-xss" class="lab-content" style="display: block;">
+            <div class="waf-alert"><i class="fa-solid fa-shield-halved"></i> WAF STATUS: Level 3 Active (Filter: &lt;script&gt;)</div>
+            <p>Task: Trigger an alert box using a SVG event handler.</p>
             <div class="input-group">
-                <input type="text" id="xss-in" placeholder="Enter payload...">
+                <input type="text" id="xss-in" placeholder="<svg onload=... ">
                 <button class="fire-btn" onclick="solveXSS()">EXPLOT</button>
             </div>
-            <div id="xss-out" class="terminal-output">> Awaiting payload...</div>
+            <div id="xss-out" class="terminal-output">> Awaiting input...</div>
             <div id="flag-xss" class="flag-box"></div>
         </div>
 
-        <!-- SQLi Challenge -->
         <div id="lab-sqli" class="lab-content">
-            <div class="waf-alert">WAF STATUS: Level 4 (Blocks: ' OR 1=1, UNION, SELECT)</div>
-            <p>Task: Bypass the filter using URL encoding or whitespace manipulation to dump the 'secret'.</p>
+            <div class="waf-alert"><i class="fa-solid fa-shield-halved"></i> WAF STATUS: Blocking ' OR 1=1</div>
+            <p>Task: Use comments (--) to bypass the login query.</p>
             <div class="input-group">
-                <input type="text" id="sqli-in" placeholder="ID Number...">
+                <input type="text" id="sqli-in" placeholder="admin' --">
                 <button class="fire-btn" onclick="solveSQLi()">INJECT</button>
             </div>
-            <div id="sqli-out" class="terminal-output">> Connection established. Database: ghost_db</div>
+            <div id="sqli-out" class="terminal-output">> Database connected...</div>
             <div id="flag-sqli" class="flag-box"></div>
         </div>
 
-        <!-- LFI Challenge -->
         <div id="lab-lfi" class="lab-content">
-            <div class="waf-alert">WAF STATUS: Level 2 (Blocks: ../, etc/passwd)</div>
-            <p>Task: Access the sensitive file /secret/config.txt using encoding.</p>
+            <div class="waf-alert"><i class="fa-solid fa-shield-halved"></i> WAF STATUS: Filtering ../</div>
+            <p>Task: Use double encoding to read /etc/passwd.</p>
             <div class="input-group">
-                <input type="text" id="lfi-in" placeholder="filename.php?page=...">
+                <input type="text" id="lfi-in" placeholder="%252e%252e%252f">
                 <button class="fire-btn" onclick="solveLFI()">READ</button>
             </div>
-            <div id="lfi-out" class="terminal-output">> Root directory: /var/www/html/</div>
+            <div id="lfi-out" class="terminal-output">> Accessing file system...</div>
             <div id="flag-lfi" class="flag-box"></div>
         </div>
 
-        <!-- RCE Challenge -->
         <div id="lab-cmd" class="lab-content">
-            <div class="waf-alert">WAF STATUS: Level 5 (Blocks: ;, &&, |, cat, ls)</div>
-            <p>Task: Execute the 'whoami' command using alternative command separators or encoding.</p>
+            <div class="waf-alert"><i class="fa-solid fa-shield-halved"></i> WAF STATUS: Blocking ; and &&</div>
+            <p>Task: Use a subshell $() to execute the 'whoami' command.</p>
             <div class="input-group">
-                <input type="text" id="cmd-in" placeholder="IP Address...">
+                <input type="text" id="cmd-in" placeholder="$(whoami)">
                 <button class="fire-btn" onclick="solveCMD()">RUN</button>
             </div>
-            <div id="cmd-out" class="terminal-output">> Pinging target...</div>
+            <div id="cmd-out" class="terminal-output">> System kernel ready...</div>
             <div id="flag-cmd" class="flag-box"></div>
         </div>
     </div>
 
-    <!-- Secure Communication -->
-    <div class="section">
-        <span class="section-header">SECURE_CHANNEL</span>
-        <p style="text-align:center;">Transmission encrypted. Start session with GHOST0X1.</p>
-        <button onclick="startMail()" style="display:block; margin:20px auto; padding:15px 40px; background:transparent; border:2px solid var(--matrix-green); color:var(--matrix-green); font-weight:bold;">INITIALIZE HANDSHAKE</button>
+    <div class="section animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+        <span class="section-header"><i class="fa-solid fa-satellite-dish"></i> CONTACT_ESTABLISHMENT</span>
+        <div class="social-links">
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <p style="text-align:center; color: #555;">Handshake protocol ready for secure communication.</p>
+        <button onclick="startMail()" style="display:block; margin:20px auto; padding:15px 40px; background:transparent; border:2px solid var(--matrix-green); color:var(--matrix-green); font-weight:bold; cursor:pointer; font-family: inherit;">INITIATE HANDSHAKE</button>
     </div>
 
     <footer>
-        GHOST0X1 // NO SYSTEM IS SAFE // BUILT FOR EXCELLENCE
+        <p>MD. RUBEL AHMED // SECURED & ENCRYPTED</p>
+        <p style="margin-top: 10px; opacity: 0.5;">© 2026 - NO SYSTEM IS SAFE</p>
     </footer>
 </div>
 
+<!-- Scripts -->
+<!-- SweetAlert2 for beautiful alerts -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
-    // 1. Matrix Animation
+    // Matrix Animation
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-    const chars = "GHOST0X1$#@%&*01";
-    const drops = Array(Math.floor(canvas.width/18)).fill(1);
-    function draw() {
+    const chars = "RUBEL-AHMED-01-SEC-HACK-GHOST";
+    const drops = Array(Math.floor(canvas.width/20)).fill(1);
+    
+    function drawMatrix() {
         ctx.fillStyle = "rgba(5, 10, 5, 0.1)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "#00FF41"; ctx.font = "16px monospace";
+        ctx.fillStyle = "#00FF41"; ctx.font = "15px monospace";
         drops.forEach((y, i) => {
             const t = chars[Math.floor(Math.random()*chars.length)];
-            ctx.fillText(t, i*18, y*18);
-            if (y*18 > canvas.height && Math.random() > 0.98) drops[i] = 0;
+            ctx.fillText(t, i*20, y*20);
+            if (y*20 > canvas.height && Math.random() > 0.98) drops[i] = 0;
             drops[i]++;
         });
     }
-    setInterval(draw, 40);
+    setInterval(drawMatrix, 50);
 
-    // 2. Dynamic Flag Generator (Unique per session/user)
-    function generateFlag(challenge) {
-        const userId = navigator.userAgent.length + new Date().getDate();
-        const flag = "GHOST{"+challenge.toUpperCase()+"_"+btoa(userId).substring(0,8)+"}";
-        return flag;
-    }
-
-    // 3. Lab Navigation
+    // Lab Logic
     function openLab(name) {
         document.querySelectorAll('.lab-content').forEach(c => c.style.display = 'none');
         document.querySelectorAll('.lab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById('lab-'+name).style.display = 'block';
-        event.target.classList.add('active');
+        event.currentTarget.classList.add('active');
     }
-
-    // --- Lab Logic (Deeper Simulation) ---
 
     function solveXSS() {
         const val = document.getElementById('xss-in').value.toLowerCase();
         const out = document.getElementById('xss-out');
         if(val.includes("<script") || val.includes("alert")) {
-            out.innerHTML = "<span style='color:red'>[!] WAF BLOCK: Malicious Script Tag/Function Detected!</span>";
+            out.innerHTML = "<span style='color:red'>[!] WAF BLOCK: Signature-based attack detected!</span>";
         } else if(val.includes("onerror") || val.includes("onload") || val.includes("svg")) {
-            out.innerHTML = "SUCCESS: Payload Executed! <br> Flag Found: " + generateFlag('xss');
-            document.getElementById('flag-xss').innerText = "FLAG: " + generateFlag('xss');
+            out.innerHTML = "STATUS: Exploit Success. Flag Captured!";
+            document.getElementById('flag-xss').innerText = "FLAG{XSS_MASTER_RUBEL}";
             document.getElementById('flag-xss').style.display = 'block';
-        } else { out.innerText = "Reflected: " + val; }
+            Swal.fire('Success', 'Payload Executed!', 'success');
+        }
     }
 
     function solveSQLi() {
         const val = document.getElementById('sqli-in').value;
         const out = document.getElementById('sqli-out');
-        if(val.includes("' OR 1=1") || val.includes("UNION SELECT")) {
-            out.innerHTML = "<span style='color:red'>[!] WAF BLOCK: Signature-based SQLi Attack Detected!</span>";
-        } else if(val.includes("%27") || val.includes("' --")) {
-            out.innerHTML = "DATABASE DUMP: <br> admin:hash_23423 <br> secret_key: " + generateFlag('sqli');
-            document.getElementById('flag-sqli').innerText = "FLAG: " + generateFlag('sqli');
+        if(val.includes("' OR 1=1")) {
+            out.innerHTML = "<span style='color:red'>[!] WAF BLOCK: Tautology detected!</span>";
+        } else if(val.includes("' --")) {
+            out.innerHTML = "STATUS: Admin Access Granted!";
+            document.getElementById('flag-sqli').innerText = "FLAG{SQLi_BYPASS_EXPERT}";
             document.getElementById('flag-sqli').style.display = 'block';
-        } else { out.innerText = "Searching for ID: " + val; }
+            Swal.fire('Hacked!', 'Database dump complete.', 'info');
+        }
     }
 
     function solveLFI() {
         const val = document.getElementById('lfi-in').value;
         const out = document.getElementById('lfi-out');
-        if(val.includes("../") || val.includes("etc/passwd")) {
-            out.innerHTML = "<span style='color:red'>[!] WAF BLOCK: Directory Traversal Attempt!</span>";
-        } else if(val.includes("%2e%2e%2f") || val.includes("/secret/config.txt")) {
-            out.innerHTML = "FILE_CONTENT: <br> APP_KEY=3213 <br> FLAG=" + generateFlag('lfi');
+        if(val.includes("../")) {
+            out.innerHTML = "<span style='color:red'>[!] WAF BLOCK: Traversal attempt blocked!</span>";
+        } else if(val.includes("%252e%252e%252f")) {
+            out.innerHTML = "STATUS: Reading /etc/passwd...";
+            document.getElementById('flag-lfi').innerText = "FLAG{LFI_ENCODING_PRO}";
             document.getElementById('flag-lfi').style.display = 'block';
-            document.getElementById('flag-lfi').innerText = "FLAG: " + generateFlag('lfi');
-        } else { out.innerText = "Loading " + val + "... File not found."; }
+        }
     }
 
     function solveCMD() {
         const val = document.getElementById('cmd-in').value;
         const out = document.getElementById('cmd-out');
-        const waf = [";", "&&", "|", "cat", "ls"];
-        if(waf.some(w => val.includes(w))) {
-            out.innerHTML = "<span style='color:red'>[!] WAF BLOCK: Dangerous Character/Command Detected!</span>";
-        } else if(val.includes("`") || val.includes("$(")) {
-            out.innerHTML = "SHELL_OUTPUT: <br> ghost0x1 <br> /home/ghost0x1 <br> Flag: " + generateFlag('rce');
+        if(val.includes(";") || val.includes("&&")) {
+            out.innerHTML = "<span style='color:red'>[!] WAF BLOCK: Chaining character detected!</span>";
+        } else if(val.includes("$(")) {
+            out.innerHTML = "STATUS: RCE Triggered. User: root";
+            document.getElementById('flag-cmd').innerText = "FLAG{RCE_COMMAND_COMMANDER}";
             document.getElementById('flag-cmd').style.display = 'block';
-            document.getElementById('flag-cmd').innerText = "FLAG: " + generateFlag('rce');
-        } else { out.innerText = "PING " + val + ": 3 packets transmitted, 0 received, 100% packet loss"; }
+        }
     }
 
     function startMail() {
-        const u = b64_decode("dGVhbWdob3N0b2ZmaWNpYWwweDE="); // teamghostofficial0x1
-        window.location.href = `mailto:${u}@gmail.com?subject=Op_Handshake`;
+        Swal.fire({
+            title: 'Initializing Secure Channel',
+            text: 'Preparing encryption keys...',
+            timer: 2000,
+            showConfirmButton: false,
+            didOpen: () => { Swal.showLoading() }
+        }).then(() => {
+            window.location.href = `mailto:teamghostofficial0x1@gmail.com?subject=Op_Handshake`;
+        });
     }
-    function b64_decode(str) { return atob(str); }
 </script>
 
 </body>
